@@ -1,0 +1,8 @@
+campaign_id,email,consent
+CMP-2026-001,alice@example.com,true
+CMP-2026-001,bob@example.com,true
+CMP-2026-001,invalid-email,true
+CMP-2026-001,charlie@example.com,false
+CMP-2026-001,bounced@example.com,true
+CMP-2026-001,alice@example.com,true
+CMP-2026-001,david@example.com,true

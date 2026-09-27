@@ -1,0 +1,45 @@
+=================================================================
+SERVERLESS BULK EMAIL CAMPAIGN - LOCAL DEMO
+=================================================================
+Campaign ID        : CMP-2026-001
+Input CSV          : sample_campaign.csv
+Controlled rate    : 2 messages/run
+
+[1] VALIDATION LAMBDA
+Total input records: 7
+Approved records   : 3
+Rejected records   : 4
+  - DUPLICATE: 1
+  - INVALID_EMAIL: 1
+  - NO_CONSENT: 1
+  - SUPPRESSED: 1
+
+[2] SQS BUFFER
+Messages queued    : 3
+
+[3] SENDER LAMBDA + MOCK SES
+Run 1: alice@example.com -> SENT
+Run 1: bob@example.com -> SENT
+Run 2: david@example.com -> SENT
+
+[4] CAMPAIGN STATUS (DYNAMODB SIMULATION)
+Campaign ID       : CMP-2026-001
+Sent              : 3
+Failed            : 0
+Rejected           : 4
+Queue remaining    : 0
+
+[5] FINAL RESULT
+STATUS: SUCCESS
+All approved recipients were processed successfully.
+=================================================================
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/generated/interface/models.py", line 32317, in hydrate_crdt_from_proto
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
